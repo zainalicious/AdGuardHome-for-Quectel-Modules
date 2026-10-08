@@ -1,0 +1,27 @@
+#!/bin/sh
+
+. /opt/etc/AdGuardHome/adguardhome.conf
+
+ENABLED=yes
+PROCS=AdGuardHome
+ARGS="$OPTIONS"
+PREARGS=""
+DESC=$PROCS
+PATH=/opt/sbin:/opt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# overwrite /etc/resolv.conf 
+overwrite_resolv() {
+    cat > /etc/resolv.conf <<EOF
+nameserver 127.0.0.1
+nameserver ::1
+EOF
+}
+
+# timpa hanya saat start/restart
+case "$1" in
+    start|restart)
+        overwrite_resolv
+        ;;
+esac
+
+. /opt/etc/init.d/rc.func
