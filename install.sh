@@ -44,5 +44,6 @@ echo "  Binary : /opt/bin/AdGuardHome (dari opkg)"
 echo "  Init   : /opt/etc/init.d/S99adguardhome (dari repo)"
 echo "  Config : /opt/etc/AdGuardHome/AdGuardHome.yaml (dari repo)"
 echo ""
-tail -3 $DNSMASQ_CONF
+tail -10 $DNSMASQ_CONF
 /opt/etc/init.d/S99adguardhome check
+cat /etc/resolv.conf
