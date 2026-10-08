@@ -18,7 +18,7 @@ else
   wget -O /opt/etc/AdGuardHome/AdGuardHome.yaml $REPO/opt/etc/AdGuardHome/AdGuardHome.yaml
 fi
 
-chmod +x /opt/etc/init.d/S99AdGuardHome
+chmod +x /opt/etc/init.d/S99adguardhome
 
 echo "[3/4] Konfigurasi dnsmasq..."
 touch $DNSMASQ_CONF
@@ -31,13 +31,13 @@ echo "no-resolv" >> $DNSMASQ_CONF
 echo "server=127.0.0.1" >> $DNSMASQ_CONF
 
 echo "[4/4] Start service..."
-/opt/etc/init.d/S99AdGuardHome start
+/opt/etc/init.d/S99adguardhome start
 
 echo ""
 echo "[OK] Selesai!"
 echo "  Binary : /opt/bin/AdGuardHome (dari opkg)"
-echo "  Init   : /opt/etc/init.d/S99AdGuardHome (dari repo)"
+echo "  Init   : /opt/etc/init.d/S99adguardhome (dari repo)"
 echo "  Config : /opt/etc/AdGuardHome/AdGuardHome.yaml (dari repo)"
 echo ""
 tail -3 $DNSMASQ_CONF
-/opt/etc/init.d/S99AdGuardHome check
+/opt/etc/init.d/S99adguardhome check
