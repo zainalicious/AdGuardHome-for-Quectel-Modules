@@ -34,6 +34,7 @@ sed -i '/^port=54/d' $DNSMASQ_CONF
 sed -i '/^server=127.0.0.1/d' $DNSMASQ_CONF
 echo "no-resolv" >> $DNSMASQ_CONF
 echo "server=127.0.0.1" >> $DNSMASQ_CONF
+echo "server=::1" >> $DNSMASQ_CONF
 
 echo "[5/5] Start service..."
 /opt/etc/init.d/S99adguardhome start
