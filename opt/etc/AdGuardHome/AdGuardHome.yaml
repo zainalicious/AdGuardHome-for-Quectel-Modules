@@ -5,6 +5,8 @@ http:
   address: 0.0.0.0:3000
   session_ttl: 720h
 users: []
+auth_attempts: 5
+block_auth_min: 15
 http_proxy: ""
 language: ""
 theme: auto
@@ -41,11 +43,11 @@ dns:
   trusted_proxies:
     - 127.0.0.0/8
     - ::1/128
-  cache_enabled: false
+  cache_enabled: true
   cache_size: 4194304
   cache_ttl_min: 0
   cache_ttl_max: 0
-  cache_optimistic: false
+  cache_optimistic: true
   cache_optimistic_answer_ttl: 30s
   cache_optimistic_max_age: 12h
   bogus_nxdomain: []
@@ -90,7 +92,7 @@ tls:
 querylog:
   dir_path: ""
   ignored: []
-  interval: 2160h
+  interval: 1h
   size_memory: 1000
   enabled: true
   ignored_enabled: false
@@ -98,7 +100,7 @@ querylog:
 statistics:
   dir_path: ""
   ignored: []
-  interval: 24h
+  interval: 1h
   enabled: true
   ignored_enabled: false
 filters:
