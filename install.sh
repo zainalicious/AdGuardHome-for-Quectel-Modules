@@ -41,4 +41,4 @@ echo "  Config : /opt/etc/AdGuardHome/AdGuardHome.yaml (dari repo)"
 echo ""
 /opt/etc/init.d/S99adguardhome check
 /opt/etc/init.d/S10cron check
-cat /opt/etc/crontab
+tail -2 /opt/etc/crontab
