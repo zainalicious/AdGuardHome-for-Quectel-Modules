@@ -7,6 +7,7 @@ set -e
 
 echo "[1/5] Install AdGuardHome dari Entware..."
 opkg update
+opkg install cron
 opkg install adguardhome-go
 
 echo "[2/5] hapus file init bawaan..."
