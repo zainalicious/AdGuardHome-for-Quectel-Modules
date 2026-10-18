@@ -7,6 +7,7 @@ set -e
 
 echo "[1/5] Install AdGuardHome dari Entware..."
 opkg update
+opkg install cron
 opkg install adguardhome-go
 
 echo "[2/5] hapus file init bawaan..."
@@ -37,5 +38,7 @@ echo "  Binary : /opt/bin/AdGuardHome (dari opkg)"
 echo "  Init   : /opt/etc/init.d/S99adguardhome (dari repo)"
 echo "  Config : /opt/etc/AdGuardHome/AdGuardHome.yaml (dari repo)"
 echo ""
+/opt/etc/init.d/S10cron start
+/opt/etc/init.d/S10cron check
 /opt/etc/init.d/S99adguardhome check
 cat /opt/etc/crontab
