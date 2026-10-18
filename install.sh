@@ -3,8 +3,6 @@
 # https://github.com/zainalicious/AdGuardHome-For-Quectel-Modules
 
 REPO="https://raw.githubusercontent.com/zainalicious/AdGuardHome-For-Quectel-Modules/main"
-DNSMASQ_CONF="/etc/data/dnsmasq.conf"
-
 set -e
 
 echo "[1/5] Install AdGuardHome dari Entware..."
@@ -25,17 +23,10 @@ fi
 
 chmod +x /opt/etc/init.d/S99adguardhome
 
-echo "[4/5] Konfigurasi dnsmasq..."
-touch $DNSMASQ_CONF
+echo "[4/5] Konfigurasi Crontab..."
 # hapus dulu biar tidak duplikat kalau install ulang
-sed -i '/^no-resolv/d' $DNSMASQ_CONF
-sed -i '/^port=0/d' $DNSMASQ_CONF
-sed -i '/^port=54/d' $DNSMASQ_CONF
-sed -i '/^server=127.0.0.1/d' $DNSMASQ_CONF
-sed -i '/^server=::1/d' $DNSMASQ_CONF
-echo "no-resolv" >> $DNSMASQ_CONF
-echo "server=127.0.0.1" >> $DNSMASQ_CONF
-echo "server=::1" >> $DNSMASQ_CONF
+sed -i '/^* * * * * root /opt/etc/init.d/S99adguardhome restart/d' /opt/etc/crontab
+echo "* * * * * root /opt/etc/init.d/S99adguardhome restart" >> /opt/etc/crontab
 
 echo "[5/5] Start service..."
 /opt/etc/init.d/S99adguardhome start
@@ -46,6 +37,5 @@ echo "  Binary : /opt/bin/AdGuardHome (dari opkg)"
 echo "  Init   : /opt/etc/init.d/S99adguardhome (dari repo)"
 echo "  Config : /opt/etc/AdGuardHome/AdGuardHome.yaml (dari repo)"
 echo ""
-tail -10 $DNSMASQ_CONF
 /opt/etc/init.d/S99adguardhome check
-cat /etc/resolv.conf
+cat /opt/etc/crontab
