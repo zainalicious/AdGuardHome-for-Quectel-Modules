@@ -7,7 +7,6 @@ set -e
 
 echo "[1/5] Install AdGuardHome dari Entware..."
 opkg update
-opkg install cron
 opkg install adguardhome-go
 
 echo "[2/5] hapus file init bawaan..."
@@ -26,7 +25,7 @@ chmod +x /opt/etc/init.d/S99adguardhome
 
 echo "[4/5] Konfigurasi Crontab..."
 # hapus dulu biar tidak duplikat kalau install ulang
-sed -i '/^* * * * * root /opt/etc/init.d/S99adguardhome restart/d' /opt/etc/crontab
+sed -i '/S99adguardhome/d' /opt/etc/crontab
 echo "* * * * * root /opt/etc/init.d/S99adguardhome restart" >> /opt/etc/crontab
 
 echo "[5/5] Start service..."
@@ -38,7 +37,5 @@ echo "  Binary : /opt/bin/AdGuardHome (dari opkg)"
 echo "  Init   : /opt/etc/init.d/S99adguardhome (dari repo)"
 echo "  Config : /opt/etc/AdGuardHome/AdGuardHome.yaml (dari repo)"
 echo ""
-/opt/etc/init.d/S10cron start
-/opt/etc/init.d/S10cron check
 /opt/etc/init.d/S99adguardhome check
 cat /opt/etc/crontab
