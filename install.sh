@@ -26,7 +26,7 @@ chmod +x /opt/etc/init.d/S99adguardhome
 
 echo "[4/5] Konfigurasi Crontab..."
 # hapus dulu biar tidak duplikat kalau install ulang
-sed -i '/S99adguardhome/d' /opt/etc/crontab
+sed -i '/S99adguardhome/d' /opt/etc/crontab 2>/dev/null || true
 echo "* * * * * root /opt/etc/init.d/S99adguardhome restart" >> /opt/etc/crontab
 /opt/etc/init.d/S10cron start
 
