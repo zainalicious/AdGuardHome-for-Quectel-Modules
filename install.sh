@@ -28,6 +28,7 @@ echo "[4/5] Konfigurasi Crontab..."
 # hapus dulu biar tidak duplikat kalau install ulang
 sed -i '/S99adguardhome/d' /opt/etc/crontab
 echo "* * * * * root /opt/etc/init.d/S99adguardhome restart" >> /opt/etc/crontab
+/opt/etc/init.d/S10cron start
 
 echo "[5/5] Start service..."
 /opt/etc/init.d/S99adguardhome start
@@ -39,4 +40,5 @@ echo "  Init   : /opt/etc/init.d/S99adguardhome (dari repo)"
 echo "  Config : /opt/etc/AdGuardHome/AdGuardHome.yaml (dari repo)"
 echo ""
 /opt/etc/init.d/S99adguardhome check
+/opt/etc/init.d/S10cron check
 cat /opt/etc/crontab
