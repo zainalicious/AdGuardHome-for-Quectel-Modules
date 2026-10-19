@@ -14,6 +14,9 @@ echo "[2/5] hapus file init bawaan..."
 rm -f /opt/etc/init.d/S99adguardhome
 
 echo "[3/5] Download file dari repo..."
+mkdir -p /opt/etc/AdGuardHome
+mkdir -p /opt/etc/init.d
+mkdir -p /usrdata/scripts
 if command -v curl >/dev/null 2>&1; then
   curl -L -o /opt/etc/AdGuardHome/AdGuardHome.yaml $REPO/opt/etc/AdGuardHome/AdGuardHome.yaml
   curl -L -o /opt/etc/init.d/S99adguardhome $REPO/opt/etc/init.d/S99adguardhome
@@ -48,4 +51,4 @@ echo ""
 /opt/etc/init.d/S99adguardhome check
 /opt/etc/init.d/S10cron check
 echo "--- /opt/etc/crontab ---"
-cat -A /opt/etc/crontab
+cat /opt/etc/crontab
